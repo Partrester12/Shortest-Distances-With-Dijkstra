@@ -1,2 +1,2 @@
-# Shortest distanves with Dijkstra
+# Shortest distances with Dijkstra
 
