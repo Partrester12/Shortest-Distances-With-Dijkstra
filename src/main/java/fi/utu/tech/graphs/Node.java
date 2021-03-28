@@ -5,6 +5,11 @@ import java.util.ArrayList;
 public class Node {
     private int placement;
     private int cost=0;
+
+    public int[][] getFollowers() {
+        return followers;
+    }
+
     private int[][] followers;
 
     //Dummy node
@@ -22,5 +27,16 @@ public class Node {
     public Node(int placement, int[][] followers){
         this.placement = placement;
         this.followers = followers;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("This is node: "+placement+" with connections: ");
+
+        for(int i=0;i< followers.length; i++){
+            sb.append("("+followers[i][0]+","+followers[i][1]+")");
+        }
+
+        return sb.toString();
     }
 }
