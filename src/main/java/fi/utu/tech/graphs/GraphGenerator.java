@@ -78,6 +78,57 @@ public class GraphGenerator {
         return null;
     }
 
+    /**
+     * Graph created contains 5 nodes, with each connection being bidirectional
+     * Shortest route from 0 to 4 is 0-1-2-3-4 and is equal to 12
+     *
+     * This graph has been solved by hand so the results above are always accurate
+     *
+     * @return A premade graph for testing purposes
+     */
+    public Graph createTestGraph(){
+        Node[] nodes = new Node[5];
+        int[][] yeet = new int[2][2];
+        yeet[0][0]=1;
+        yeet[0][1]=4;
+        yeet[1][0]=2;
+        yeet[1][1]=8;
+        nodes[0]=new Node(0, yeet);
+        yeet = new int[3][2];
+        yeet[0][0]=0;
+        yeet[0][1]=4;
+        yeet[1][0]=2;
+        yeet[1][1]=2;
+        yeet[2][0]=4;
+        yeet[2][1]=10;
+        nodes[1]=new Node(1, yeet);
+        yeet = new int[4][2];
+        yeet[0][0]=0;
+        yeet[0][1]=8;
+        yeet[1][0]=1;
+        yeet[1][1]=2;
+        yeet[2][0]=3;
+        yeet[2][1]=4;
+        yeet[3][0]=4;
+        yeet[3][1]=8;
+        nodes[2]=new Node(2, yeet);
+        yeet = new int[2][2];
+        yeet[0][0]=2;
+        yeet[0][1]=4;
+        yeet[1][0]=4;
+        yeet[1][1]=2;
+        nodes[3]=new Node(3, yeet);
+        yeet = new int[3][2];
+        yeet[0][0]=1;
+        yeet[0][1]=10;
+        yeet[1][0]=2;
+        yeet[1][1]=8;
+        yeet[2][0]=3;
+        yeet[2][1]=2;
+        nodes[4]=new Node(4, yeet);
+        return new Graph(nodes);
+    }
+
     private ArrayList<Integer> createHelper(int i){
         ArrayList<Integer> hjelp= new ArrayList<Integer>();
         for(int j=0;j<i;j++){
