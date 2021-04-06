@@ -1,10 +1,25 @@
 package fi.utu.tech;
 
 import fi.utu.tech.Dijkstran.*;
+import fi.utu.tech.Window.MainWindow;
 import fi.utu.tech.graphs.*;
+import javafx.application.Application;
 
 public class Main {
 
+    static Class<?> chooseMain(){
+        return MainWindow.class;
+    }
+
+    public static void main(String[] args){
+
+        var mainClass = chooseMain();
+
+        Application.launch(mainClass.asSubclass(Application.class), args);
+
+    }
+
+    /*
     public static void main(String[] args){
         GraphGenerator gg = new GraphGenerator();
         Graph g = gg.createTestGraph();
@@ -27,4 +42,6 @@ public class Main {
         }
         System.out.println();
     }
+
+     */
 }

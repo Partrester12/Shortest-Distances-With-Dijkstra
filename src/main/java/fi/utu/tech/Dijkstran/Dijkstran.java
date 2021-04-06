@@ -68,6 +68,22 @@ public class Dijkstran {
         return originNodes[n1];
     }
 
+
+    /**
+     *
+     * Currently uses the value 100000 to display "infinite distance".
+     * Should the need arise, it can be easily changed
+     *
+     * Unfortunately since the Dijkstra-algorithm requires addition, we cannot straight up use INTEGER.MAX_VALUE as it would cause an overflow
+     *
+     *
+     * @param n
+     * Takes in an int as a parameter and runs the Dijkstra-algorithm for the corresponding node of a graph
+     * @return
+     * Returns two int-arrays
+     * 1st one contains the shortest distances from node n to all the other nodes in the graph
+     * 2nd one contains the origin node for the given distance, just as the Dijkstra-algorithm works
+     */
     private int[][] shortestDistancesToAllNodesInGraph(int n){
         Node[] nodes = graph.getNodes();
         int[] distances = new int[nodes.length];
@@ -83,7 +99,7 @@ public class Dijkstran {
             if(i==n){
                 distances[i]=0;
             } else {
-                distances[i] = 10000;
+                distances[i] = 100000;
             }
         }
 
