@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/14.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fi.utu.tech.Window.ResultsScreenController">
+   <center>
+      <ScrollPane prefHeight="413.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+         <content>
+            <StackPane fx:id="stack" prefHeight="380.0" prefWidth="400.0" style="-fx-border-color: #000000; -fx-border-width: 2;">
+               <children>
+                  <Canvas fx:id="canvas" height="380.0" width="400.0" />
+                  <Pane fx:id="shapes" prefHeight="380.0" prefWidth="400.0" />
+               </children>
+            </StackPane>
+         </content>
+      </ScrollPane>
+   </center>
+   <right>
+      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="194.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="test" text="Testing" />
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </VBox>
+   </right>
+</BorderPane>

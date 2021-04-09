@@ -67,20 +67,92 @@ public class GraphGenerator {
     }
 
     //Create a graph with the specified number of nodes with random values
-    public Graph createRandomValuedGraph(int numOfNodes){
+    public Graph createRandomValuedGraph(int numNodes){
 
-        return null;
+        Node[] nodes = new Node[numNodes];
+
+        for(int i=0;i<numNodes;i++){
+            int numConnections = random.nextInt(numNodes);
+            int[][] followers;
+
+            //If the node has no followers, we create a dummy follower
+            if(numConnections==0){
+                followers = new int[1][2];
+                followers[0][0]=-1;
+                followers[0][1]=0;
+            } else {
+                followers = new int[numConnections][2];
+                ArrayList<Integer> helper = createHelper(numNodes);
+                //Remove the node itself from the list of possible followers
+                helper.remove(Integer.valueOf(i));
+                for (int j = 0; j < numConnections; j++) {
+                    int follower = helper.get(random.nextInt(helper.size()));
+                    followers[j][0] = follower;
+
+                    //Debug
+                /*
+                for(int k=0;k<helper.size();k++){
+                    System.out.print(helper.get(k)+", ");
+                }
+                System.out.println();
+                 */
+
+                    helper.remove(Integer.valueOf(follower));
+                    //If negative values are allowed, they can appear as costs
+                    if (negativeValues) {
+                        followers[j][1] = random.nextInt(201) - 100;
+                    } else {
+                        followers[j][1] = random.nextInt(101);
+                    }
+                }
+            }
+            nodes[i] = new Node(i, followers);
+        }
+
+        return new Graph(nodes);
     }
 
     //Create a custom graph from scratch
-    public Graph createCustomGraph(int numOfNodes){
+    public Graph createCustomGraph(int[] nodeA, int[] nodeB, int[] distances, int numNodes){
 
-        return null;
+
+        Node[] nodes = new Node[numNodes];
+
+        for(int i=0;i<numNodes;i++){
+
+            int[][] followers;
+            int h = 0;
+            ArrayList<Integer> help = new ArrayList();
+
+            for(int j=0;j<nodeA.length;j++){
+                if(nodeA[j]==i){
+                    h++;
+                    help.add(j);
+                }
+            }
+
+            if(h==0){
+                followers = new int[1][2];
+                followers[0][0]=-1;
+                followers[0][1]=0;
+            } else {
+                followers = new int[help.size()][2];
+                for(int j=0;j<help.size();j++){
+                    followers[j][0]=nodeB[help.get(j)];
+                    followers[j][1]=distances[help.get(j)];
+                }
+            }
+            nodes[i] = new Node(i, followers);
+        }
+
+        return new Graph(nodes);
     }
+
+
 
     /**
      * Graph created contains 5 nodes, with each connection being bidirectional
-     * Shortest route from 0 to 4 is 0-1-2-3-4 and is equal to 12
+     * Shortest route from 0 to 4 is 0-1-2-3-4 and distance is equal to 12
      *
      * This graph has been solved by hand so the results above are always accurate
      *
