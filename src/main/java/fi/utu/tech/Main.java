@@ -8,7 +8,7 @@ import javafx.application.Application;
  */
 public class Main {
 
-    static Class<?> chooseMain(){
+    public static Class<?> chooseMain(){
         return MainWindow.class;
     }
 

@@ -36,7 +36,7 @@ public class MainWindow extends Application {
         rsc.setMainWindow(this);
 
 
-        primaryStage.setTitle("Testing 123");
+        primaryStage.setTitle("Calculating shortest distances with Dijkstra!");
         primaryStage.setScene(initScreen);
         primaryStage.show();
 

@@ -15,7 +15,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="shortest-distanves-with-dijkstra" options="-Xlint:unchecked" />
+      <module name="shortest-distanves-with-dijkstra" options="" />
     </option>
   </component>
 </project>

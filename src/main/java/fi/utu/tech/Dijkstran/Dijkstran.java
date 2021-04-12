@@ -47,7 +47,7 @@ public class Dijkstran {
         if(n1==-1||n2==-1){
             return new int[]{n1, n2};
         }
-        ArrayList<Integer> nodes = new ArrayList();
+        ArrayList<Integer> nodes = new ArrayList<Integer>();
         nodes.add(n2);
 
         int oN = originNode(n1, n2);

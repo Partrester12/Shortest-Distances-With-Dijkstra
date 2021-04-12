@@ -68,7 +68,7 @@ public class ResultsScreenController {
      */
     private void drawResults(){
         Random rand = new Random();
-        ArrayList<int[]> help = new ArrayList();
+        ArrayList<int[]> help = new ArrayList<int[]>();
         Circle[] circles = new Circle[g.getNodes().length];
 
 
