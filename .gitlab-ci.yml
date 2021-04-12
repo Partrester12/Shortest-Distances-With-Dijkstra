@@ -11,7 +11,7 @@ build:
 test:
   stage: test
   script:
-    - mvn javafx::run
+    - java -jar target/shortest-distanves-with-dijkstra-1.0.0.jar
 
 pages:
   image: maven:slim
