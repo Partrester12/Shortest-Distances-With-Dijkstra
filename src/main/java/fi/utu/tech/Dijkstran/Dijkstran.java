@@ -11,6 +11,10 @@ public class Dijkstran {
     private int[][] shortestDistances;
     private int[][] originNodes;
 
+    /**
+     *Constructor, which requires a Graph and immediately "solves" it
+     * This is done so as to not waste resources solving the distances over and over again
+     */
     public Dijkstran(Graph g){
         graph = g;
         shortestDistances = new int[graph.getNodes().length][graph.getNodes().length];
@@ -22,12 +26,22 @@ public class Dijkstran {
     }
 
 
-
-
+    /**
+     *
+     * @param n1
+     * @param n2
+     * @return Returns the shortest distance of two different nodes within the same graph
+     */
     public int shortestDistanceFromNodeXToNodeY(int n1, int n2){
         return shortestDistances[n1][n2];
     }
 
+    /**
+     *
+     * @param n1
+     * @param n2
+     * @return Returns an int[] containing all the nodes which are visited in the route which is the shortest from node A to node B
+     */
     public int[] shortestRouteFromNodeXToNodeY(int n1, int n2){
         //If one of the nodes isn't connected to any other node
         if(n1==-1||n2==-1){
@@ -56,14 +70,34 @@ public class Dijkstran {
 
     }
 
+    /**
+     *
+     * @param n1
+     * @param n2
+     * @return Returns the "origin" node for the given node n2 when counting distances from node n1
+     *
+     * In other terms the dijkstra-algorithm keeps track of what is the previous node
+     * So for example if teh Graph g contains nodes n1, n2 and n3 AND there is a one-way connection from n1 to n2 and another from n2 to n3
+     * The origin node for n3, when starting from node n1 is n2, as it precedes n3 on the shortest route from n1 to n3
+     */
     private int originNode(int n1, int n2){
         return originNodes[n1][n2];
     }
 
+    /**
+     *
+     * @param n1
+     * @return Returns an int[] containing the shortest routes from node n1 to all the other nodes within the same graph
+     */
     public int[] shortestDistancesFromNodeX(int n1){
         return shortestDistances[n1];
     }
 
+    /**
+     *
+     * @param n1
+     * @return Returns origin nodes for all nodes when starting from node n1
+     */
     public int[] originNodesForShortestDistances(int n1){
         return originNodes[n1];
     }

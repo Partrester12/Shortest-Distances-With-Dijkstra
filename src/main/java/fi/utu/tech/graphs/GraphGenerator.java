@@ -43,7 +43,7 @@ public class GraphGenerator {
                     int follower = helper.get(random.nextInt(helper.size()));
                     followers[j][0] = follower;
 
-                    //Debug
+                    //Old debug
                 /*
                 for(int k=0;k<helper.size();k++){
                     System.out.print(helper.get(k)+", ");
@@ -201,6 +201,9 @@ public class GraphGenerator {
         return new Graph(nodes);
     }
 
+    /**
+     *Method which returns an Integer ArrayList that contains ints up to the int i given as the parameter
+     */
     private ArrayList<Integer> createHelper(int i){
         ArrayList<Integer> hjelp= new ArrayList<Integer>();
         for(int j=0;j<i;j++){

@@ -42,6 +42,12 @@ public class MainWindow extends Application {
 
     }
 
+    /**
+     *
+     * @param n int, currently 0 or 1
+     *
+     * Method for switching the scene of this window from other classes
+     */
     public void switchScene(int n){
         switch(n){
             case(0):primary.setScene(initScreen);
@@ -51,6 +57,11 @@ public class MainWindow extends Application {
         }
     }
 
+    /**
+     *
+     * @param g
+     * Method for passing on a graph to the ResultsScreen
+     */
     public void passGraph(Graph g){
         rsc.setGraph(g);
     }

@@ -2,13 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/14.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fi.utu.tech.Window.ResultsScreenController">
    <center>
@@ -24,9 +26,12 @@
       </ScrollPane>
    </center>
    <right>
-      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="194.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="194.0" spacing="30.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="test" text="Testing" />
+            <Label fx:id="test" text="Node hovered: -" />
+            <TextArea fx:id="information" editable="false" prefHeight="200.0" prefWidth="200.0" text="Here you will recieve &#10;information regarding&#10;the distances!&#10;&#10;As a reminder,&#10;select nodes by &#10;clicking on them&#10;&#10;Click either two different&#10;nodes or the same node&#10;twice to get results!" />
+            <CheckBox fx:id="showRoute" mnemonicParsing="false" text="Show route" />
+            <Button fx:id="editGraph" mnemonicParsing="false" onAction="#editGraph" text="Edit graph" />
          </children>
          <BorderPane.margin>
             <Insets />

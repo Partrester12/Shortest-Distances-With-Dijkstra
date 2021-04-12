@@ -85,6 +85,9 @@ public class GraphicalGraphsController {
         this.mw=mw;
     }
 
+    /**
+     * Initialize necessary properties, bindings and control-data
+     */
     public void initialize(){
 
         //To keep track of the value of ChoiceBoc numNodes
@@ -92,6 +95,7 @@ public class GraphicalGraphsController {
 
         //Adding the options to numNodes
         numNodes.getItems().add("Random");
+        numNodes.getItems().add("Test");
         for(int i=2;i<101;i++){
             numNodes.getItems().add(i);
         }
@@ -125,6 +129,9 @@ public class GraphicalGraphsController {
     private VBox connections;
 
     @FXML
+    private TextArea error;
+
+    @FXML
     /**
      * Method for creating the graph based on the inputs from the user
      *
@@ -145,9 +152,14 @@ public class GraphicalGraphsController {
             g = gg.createRandomValuedGraph((Integer)numNodes.getValue());
             mw.passGraph(g);
             mw.switchScene(1);
+        } else if(numNodes.getValue().equals("Test")){
+            g = gg.createTestGraph();
+            mw.passGraph(g);
+            mw.switchScene(1);
         } else {
             if ((connections.getChildren()).size()>(Integer)numNodes.getValue()*(((Integer)numNodes.getValue()-1))) {
                 //Add some form of notification to the user
+                error.setVisible(true);
             } else {
                 int temp = (connections.getChildren()).size();
 
@@ -182,6 +194,7 @@ public class GraphicalGraphsController {
                     mw.switchScene(1);
                 } else {
                     //Add notification to the user
+                    error.setVisible(true);
                 }
             }
         }//End of graph creation

@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
@@ -27,6 +28,7 @@ public class ResultsScreenController {
     private MainWindow mw;
     private Dijkstran dijkstran;
     private BooleanProperty nodeSelected;
+    private BooleanProperty showingRoute;
     private IntegerProperty node1;
 
     //Method for passing the MainWindow to this controller in order to switch scenes
@@ -34,14 +36,22 @@ public class ResultsScreenController {
         this.mw=mw;
     }
 
+    /**
+     * Method for passing the graph from the initial screen to this controller-class
+     * Automatically "solves" the graph as the Dijkstran-class intends
+     * Also initializes the graphical representation of the graph with the drawResults() method
+     * @param g - a graph which has no duplicate connections
+     */
     public void setGraph(Graph g){
         this.g=g;
         dijkstran= new Dijkstran(g);
         drawResults();
     }
 
+    //Initializes necessary properties
     public void initialize(){
         nodeSelected = new SimpleBooleanProperty(false);
+        showingRoute = new SimpleBooleanProperty(false);
         node1 = new SimpleIntegerProperty(-1);
     }
 
@@ -85,41 +95,106 @@ public class ResultsScreenController {
             circles[i].setFill(Color.BLUE);
 
             //Adding functionality to the nodes
+            //Add highlighter to make it clearer which nodes is currently hovered
             circles[i].setOnMouseEntered((e) -> {
                 Circle target = (Circle)e.getTarget();
                 test.setText("Node: "+target.getId());
-                target.setFill(Color.RED);
-            });
-
-            circles[i].setOnMouseExited((e) -> {
-                Circle target = (Circle)e.getTarget();
-                test.setText("Node: -");
-                if(!nodeSelected.getValue()||node1.getValue()!=Integer.parseInt(target.getId())){
-                    target.setFill(Color.BLUE);
-                }
-            });
-
-            circles[i].setOnMousePressed((e) -> {
-                Circle target = (Circle)e.getTarget();
-                if(nodeSelected.getValue()) {
-                    if (node1.getValue() != Integer.parseInt(target.getId())) {
-                        test.setText("Distance between nodes: "+node1.getValue()+"&"+target.getId()+" is "+dijkstran.shortestDistanceFromNodeXToNodeY(node1.getValue(), Integer.parseInt(target.getId())));
-                        circles[node1.getValue()].setFill(Color.GREEN);
-                        nodeSelected.setValue(false);
-                    } else {
-                        test.setText("Distances from node "+node1.getValue()+":");
-                        nodeSelected.setValue(false);
-                    }
-                } else {
-                    node1.setValue(Integer.parseInt(target.getId()));
-                    nodeSelected.setValue(true);
+                if(!showingRoute.getValue()) {
                     target.setFill(Color.RED);
                 }
             });
 
+            //Removes highlighter when exiting a node, should no exceptions arise
+            circles[i].setOnMouseExited((e) -> {
+                Circle target = (Circle)e.getTarget();
+                test.setText("Node hovered: -");
+                if(!showingRoute.getValue()) {
+                    if (nodeSelected.getValue() && node1.getValue() != Integer.parseInt(target.getId())) {
+                        target.setFill(Color.BLUE);
+                    } else if (!nodeSelected.getValue()) {
+                        for (int j = 0; j < circles.length; j++) {
+                            circles[j].setFill(Color.BLUE);
+                        }
+                    }
+                }
+            });
+
+
+            //Adding the functionality for each node where by mouse click it's possible to select nodes and get different results from the Dijkstran-class
+            circles[i].setOnMousePressed((e) -> {
+                Circle target = (Circle)e.getTarget();
+                if(nodeSelected.getValue()) {
+                    //If the user has selected two different nodes
+                    if (node1.getValue() != Integer.parseInt(target.getId())) {
+                        information.setText("Distance between nodes: \n"+node1.getValue()+"&"+target.getId()+" is: ");
+                        if(dijkstran.shortestDistanceFromNodeXToNodeY(node1.getValue(), Integer.parseInt(target.getId()))==100000){
+                            information.appendText("\u221e");
+                        } else {
+                            information.appendText(dijkstran.shortestDistanceFromNodeXToNodeY(node1.getValue(), Integer.parseInt(target.getId()))+"");
+                        }
+                        if(showRoute.isSelected()){
+                            information.appendText("\n"+"\nTo which the route goes: \n");
+                            int[] route = dijkstran.shortestRouteFromNodeXToNodeY(node1.getValue(), Integer.parseInt(target.getId()));
+                            for(int j=1;j<route.length-1;j++){
+                                circles[route[j]].setFill(Color.PURPLE);
+                            }
+                            for(int j=0;j<route.length;j++){
+                                if(j== route.length-1){
+                                    information.appendText(route[j]+"");
+                                } else {
+                                    information.appendText(route[j] + "-");
+                                }
+                            }
+                            showingRoute.setValue(true);
+                        } else {
+                            circles[node1.getValue()].setFill(Color.GREEN);
+                        }
+                    }
+                    //If the user selects the same node twice
+                    else {
+                        information.setText("Shortest distance from \nnode "+node1.getValue()+":\n");
+                        int[] distances = dijkstran.shortestDistancesFromNodeX(node1.getValue());
+                        for(int j=0;j<distances.length;j++){
+                            if(j!=node1.getValue()) {
+                                if(distances[j]!=100000) {
+                                    information.appendText("to node " + j + ": " + distances[j] + "\n");
+                                } else {
+                                    information.appendText("\u221e");
+                                }
+                                if(showRoute.isSelected()){
+                                    information.appendText("with route: ");
+                                    int[] route = dijkstran.shortestRouteFromNodeXToNodeY(node1.getValue(), j);
+                                    for(int k=0;k<route.length;k++){
+                                        if(k== route.length-1) {
+                                            information.appendText(route[k]+"");
+                                        } else {
+                                            information.appendText(route[k]+"-");
+                                        }
+                                    }
+                                    showingRoute.setValue(true);
+                                }
+                                information.appendText("\n");
+                            }
+                        }
+                    }
+                    nodeSelected.setValue(false);
+                    //If no node has been selected yet
+                } else {
+                    showingRoute.setValue(false);
+                    for(int j=0;j<circles.length;j++){
+                        circles[j].setFill(Color.BLUE);
+                    }
+                    node1.setValue(Integer.parseInt(target.getId()));
+                    information.setText("Node "+node1.getValue()+" selected");
+                    nodeSelected.setValue(true);
+                    target.setFill(Color.RED);
+                }
+            });
+            //Adding the nodes to the screen
             shapes.getChildren().add(circles[i]);
         }
 
+        //Drawing the connections between nodes
         for(int i=0;i<circles.length;i++){
             if(g.getNodes()[i].getFollowers()[0][0]!=-1){
                 for(int j=0;j<g.getNodes()[i].getFollowers().length;j++){
@@ -172,10 +247,18 @@ public class ResultsScreenController {
     private TextArea information;
 
     @FXML
+    private CheckBox showRoute;
+
+    @FXML
     private Button editGraph;
 
     @FXML
+    /**
+     * Clears the current scene and switches back to the initial screen
+     */
     public void editGraph(ActionEvent e){
-
+        canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        shapes.getChildren().clear();
+        mw.switchScene(0);
     }
 }
