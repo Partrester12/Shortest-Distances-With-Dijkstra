@@ -12,15 +12,3 @@ test:
   stage: test
   script:
     - mvn test
-
-pages:
-  image: maven:slim
-  stage: deploy
-  script:
-    - curl https://tech.utugit.fi/soft/tools/sitegen/sitegen.jar -o sitegen.jar
-    - java -jar sitegen.jar -docs -download -commits
-  artifacts:
-    paths:
-      - public
-  only:
-    - master
