@@ -7,19 +7,28 @@ public class GraphGenerator {
     private boolean negativeValues;
     private Random random;
 
-    //Standard constructor
+    /**
+     * Standard constructor
+     */
     public GraphGenerator(){
         negativeValues=false;
         random = new Random();
     }
 
-    //Adjustable constructor
+    /**
+     * Adjustable constructor which can allow negative values as distances
+     * @param negativeValues Whether negative distances are allowed or not
+     */
     public GraphGenerator(boolean negativeValues){
         this.negativeValues = negativeValues;
         random = new Random();
     }
 
-    //Create a graph of random number of nodes and with random values
+    /**
+     *  Create a graph of random number of nodes with random connections of random distances
+     * @return Graph-object usable by the Dijkstran-class
+     */
+
     public Graph createTotallyRandomGraph(){
         int numNodes = random.nextInt(100)+1;
 
@@ -66,7 +75,11 @@ public class GraphGenerator {
         return new Graph(nodes);
     }
 
-    //Create a graph with the specified number of nodes with random values
+    /**
+     * Create a graph with the specified number of nodes with random values
+     * @param numNodes int specifying the number of nodes in the graph
+     * @return Graph-object usable by the Dijkstran-class
+     */
     public Graph createRandomValuedGraph(int numNodes){
 
         Node[] nodes = new Node[numNodes];
@@ -112,7 +125,14 @@ public class GraphGenerator {
         return new Graph(nodes);
     }
 
-    //Create a custom graph from scratch
+    /**
+     * A method for creating a totally custom graph. A connection within the graph consists of the ints located in the same index in each of the three arrays
+     * @param nodeA Array containing the numbers of the nodes where a connection starts from
+     * @param nodeB Array containing the numbers of the nodes where a connection ends
+     * @param distances Array which contains the lengths of the connections
+     * @param numNodes Number telling the total number of nodes in this graph
+     * @return A Graph-object which is fully usable by the Dijkstran-class
+     */
     public Graph createCustomGraph(int[] nodeA, int[] nodeB, int[] distances, int numNodes){
 
 

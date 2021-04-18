@@ -1,6 +1,5 @@
 package fi.utu.tech.graphs;
 
-import java.util.Arrays;
 
 public class Graph {
     public Node[] getNodes() {

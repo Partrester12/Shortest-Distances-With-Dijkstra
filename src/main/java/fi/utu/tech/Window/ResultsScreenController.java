@@ -31,7 +31,10 @@ public class ResultsScreenController {
     private BooleanProperty showingRoute;
     private IntegerProperty node1;
 
-    //Method for passing the MainWindow to this controller in order to switch scenes
+    /**
+     * Method for passing the MainWindow to this controller in order to switch scenes
+     * @param mw The mainWindow of this program
+     */
     public void setMainWindow(MainWindow mw){
         this.mw=mw;
     }

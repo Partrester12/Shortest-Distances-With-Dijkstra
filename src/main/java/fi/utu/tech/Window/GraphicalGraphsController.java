@@ -23,8 +23,10 @@ public class GraphicalGraphsController {
 
 
 
-    //Method which adds a new GUI representation of a connection the user wants to add to the graph
-    //In simpler terms, adds an HBox which contains two ChoiceBoxes for which nodes wil be connected and a TextField where you write the distance
+    /**
+    Method which adds a new GUI representation of a connection the user wants to add to the graph
+    In simpler terms, adds an HBox which contains two ChoiceBoxes for which nodes wil be connected and a TextField where you write the distance
+     */
     private HBox createNewConnection() throws IOException {
 
         //Loading up the premade FXML-file containing the base for our HBox
@@ -80,7 +82,9 @@ public class GraphicalGraphsController {
         return h;
     }
 
-    //Method for passing the MainWindow to this controller in order to switch scenes
+    /**
+     * Method for passing the MainWindow to this controller in order to switch scenes
+     */
     public void setMainWindow(MainWindow mw){
         this.mw=mw;
     }
@@ -202,7 +206,9 @@ public class GraphicalGraphsController {
 
 
     @FXML
-    //Clears all the connections
+            /**
+    Clears all the connections
+             */
     void clearConnections(ActionEvent e){
         new Thread(new Runnable() {
             @Override
@@ -214,8 +220,10 @@ public class GraphicalGraphsController {
     }
 
     @FXML
-    //Adds a new connection. The method *createNewConnection()* is written earlier on in this class
-    void addConnection(ActionEvent e){
+            /**
+    Adds a new connection. The method *createNewConnection()* is written earlier on in this class
+    */
+             void addConnection(ActionEvent e){
         new Thread(new Runnable() {
             @Override
             public void run() {

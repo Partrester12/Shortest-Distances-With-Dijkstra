@@ -13,6 +13,10 @@ public class MainWindow extends Application {
     private ResultsScreenController rsc;
     private GraphicalGraphsController ggc;
 
+    /**
+     * Your usual extends Application type mainWindow for a JavaFX program
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception {
 
@@ -59,7 +63,7 @@ public class MainWindow extends Application {
 
     /**
      *
-     * @param g
+     * @param g a Graph
      * Method for passing on a graph to the ResultsScreen
      */
     public void passGraph(Graph g){

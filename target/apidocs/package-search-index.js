@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"fi.utu.tech"},{"l":"fi.utu.tech.Dijkstran"},{"l":"fi.utu.tech.graphs"},{"l":"fi.utu.tech.Window"}]

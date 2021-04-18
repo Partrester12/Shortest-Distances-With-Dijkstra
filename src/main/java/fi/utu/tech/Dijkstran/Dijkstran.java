@@ -28,8 +28,8 @@ public class Dijkstran {
 
     /**
      *
-     * @param n1
-     * @param n2
+     * @param n1 Index of node 1
+     * @param n2 Index of node 2
      * @return Returns the shortest distance of two different nodes within the same graph
      */
     public int shortestDistanceFromNodeXToNodeY(int n1, int n2){
@@ -38,8 +38,8 @@ public class Dijkstran {
 
     /**
      *
-     * @param n1
-     * @param n2
+     * @param n1 Index of node 1
+     * @param n2 Index of node 2
      * @return Returns an int[] containing all the nodes which are visited in the route which is the shortest from node A to node B
      */
     public int[] shortestRouteFromNodeXToNodeY(int n1, int n2){
@@ -72,8 +72,8 @@ public class Dijkstran {
 
     /**
      *
-     * @param n1
-     * @param n2
+     * @param n1 Index of node 1
+     * @param n2 Index of node 2
      * @return Returns the "origin" node for the given node n2 when counting distances from node n1
      *
      * In other terms the dijkstra-algorithm keeps track of what is the previous node
@@ -86,7 +86,7 @@ public class Dijkstran {
 
     /**
      *
-     * @param n1
+     * @param n1 Index of the node
      * @return Returns an int[] containing the shortest routes from node n1 to all the other nodes within the same graph
      */
     public int[] shortestDistancesFromNodeX(int n1){
@@ -95,7 +95,7 @@ public class Dijkstran {
 
     /**
      *
-     * @param n1
+     * @param n1 Index of the node
      * @return Returns origin nodes for all nodes when starting from node n1
      */
     public int[] originNodesForShortestDistances(int n1){
@@ -111,7 +111,7 @@ public class Dijkstran {
      * Unfortunately since the Dijkstra-algorithm requires addition, we cannot straight up use INTEGER.MAX_VALUE as it would cause an overflow
      *
      *
-     * @param n
+     * @param n index of the node
      * Takes in an int as a parameter and runs the Dijkstra-algorithm for the corresponding node of a graph
      * @return
      * Returns two int-arrays

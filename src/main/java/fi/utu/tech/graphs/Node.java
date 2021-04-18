@@ -1,7 +1,5 @@
 package fi.utu.tech.graphs;
 
-import java.util.ArrayList;
-
 public class Node {
     private int placement;
     private int cost=0;
@@ -12,18 +10,20 @@ public class Node {
 
     private int[][] followers;
 
-    //Dummy node
+    /**
+     * Dummy node
+     * @param placement Contains only the placement id of the node
+     */
     public Node(int placement){
         this.placement = placement;
     }
 
-    //Node with cost but no followers
-    public Node(int placement, int cost){
-        this.placement = placement;
-        this.cost = cost;
-    }
 
-    //Node with followers and cost to move to said followers
+    /**
+     * Node with followers and cost to move to said followers
+     * @param placement Placement id of the node in the graph
+     * @param followers Array consisting of the follower-nodes' ids and the distances
+     */
     public Node(int placement, int[][] followers){
         this.placement = placement;
         this.followers = followers;
