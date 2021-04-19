@@ -342,6 +342,7 @@
                     <sourceFileExcludes>
                         <sourceFileExclude>**/module-info.java</sourceFileExclude>
                     </sourceFileExcludes>
+                    <destDir>public</destDir>
                 </configuration>
             </plugin>
 
