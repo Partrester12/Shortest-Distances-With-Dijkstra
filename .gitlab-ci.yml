@@ -8,7 +8,7 @@ stages:
 build:
   stage: build
   script:
-    - mvn package
+    - mvn compile
   artifacts:
     paths:
       - target
