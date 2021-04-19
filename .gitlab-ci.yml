@@ -1,4 +1,9 @@
 image: maven:latest
+stages:
+- build
+- test
+- deploy
+
 
 build:
   stage: build
@@ -21,6 +26,6 @@ pages:
       - ls 
   artifacts:
     paths:
-      - public
+      - target
   only:
     - master
