@@ -12,3 +12,15 @@ test:
   stage: test
   script:
     - mvn test
+
+pages:
+  image: maven:latest
+  stage: deploy
+  script:
+      - mvn javadoc:javadoc
+      - ls 
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
