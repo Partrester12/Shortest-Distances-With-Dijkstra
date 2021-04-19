@@ -26,6 +26,6 @@ pages:
       - ls 
   artifacts:
     paths:
-      - target
+      - public
   only:
     - master
