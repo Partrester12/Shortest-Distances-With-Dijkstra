@@ -6,7 +6,7 @@ To install the program, run "mvn install" and to run the program, run "java -jar
 And yes, it's "distanves", not "distances"!
 
 When starting the program, you're first presented with the initial screen, where you can create a graph which suites your needs.
-Not that should you tick the "randomize" CheckBox, your already created connections will not be taken into account.
+Note that should you tick the "randomize" CheckBox, your already created connections will not be taken into account.
 
 Also the button "CreateGraph" will not work should there be duplicate connections so make sure you don't leave two connections from node 0 to node 1.
 
